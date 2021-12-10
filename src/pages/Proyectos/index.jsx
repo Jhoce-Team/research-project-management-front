@@ -24,11 +24,11 @@ const AccordionDetailsStyled = styled((props) => <AccordionDetails {...props} />
   backgroundColor: '#ccc',
 }));
 
-const Projects = () => {
+const IndexProyectos = () => {
   const { data: queryData, loading, error } = useQuery(PROYECTOS);
 
   useEffect(() => {
-    console.log('Datos proyecto', queryData);
+    console.log('datos proyecto', queryData);
   }, [queryData]);
 
   if (loading) return <div>Cargando...</div>;
@@ -143,4 +143,4 @@ const Objetivo = ({ tipo, descripcion }) => {
   );
 };
 
-export default Projects;
+export default IndexProyectos;

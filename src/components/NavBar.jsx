@@ -8,7 +8,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <nav className="flex w-screen h-16 justify-around items-center bg-color1 text-gray-200 md:justify-between md:pr-14">
+      <nav className="flex w-screen h-16 justify-around items-center bg-color5 text-color1 md:justify-between md:pr-14">
         <div className="md:hidden">
           <button
             onClick={() => {
@@ -20,13 +20,13 @@ const NavBar = () => {
         </div>
         <div className="flex justify-around w-1/2">
           <Link to="/home">
-            <span className="font-bold text-xl md:text-2xl hover:text-gray-300">Home</span>
+            <span className="font-bold text-xl md:text-2xl hover:text-color2">Home</span>
           </Link>
           <Link to="/projects" className="hidden md:flex">
-            <span className="font-bold text-xl md:text-2xl hover:text-gray-300">Projects</span>
+            <span className="font-bold text-xl md:text-2xl hover:text-color2">Projects</span>
           </Link>
           <Link to="/users" className="hidden md:flex">
-            <span className="font-bold text-xl md:text-2xl hover:text-gray-300">Users</span>
+            <span className="font-bold text-xl md:text-2xl hover:text-color2">Users</span>
           </Link>
         </div>
         <div>
