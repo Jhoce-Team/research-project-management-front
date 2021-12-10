@@ -12,7 +12,7 @@ import Home from "./pages/Home";
 import EditProfile from "./pages/EditProfile";
 import IndexProyectos from "./pages/Proyectos/index";
 import 'styles/globals.css';
-import 'styles/tabla.css';
+import 'styles/stylesProjects.css';
 import NewProject from "./pages/Proyectos/NewProject";
 
 const httpLink = createHttpLink({
