@@ -1,15 +1,15 @@
 .default-table {
   border-collapse: collapse;
   font-size: 1rem;
-  min-width: 400px;
+  width: 1000px;
   border-radius: 10px 10px 0 0;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .default-table thead tr {
-  background-color: #370d08;
-  color: #ffffff;
+  background-color: #431a0e;
+  color: #eee;
   text-align: left;
   font-weight: bold;
   font-size: 1.2rem;
@@ -24,15 +24,15 @@
 }
 
 .default-table tbody tr {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eee;
 }
 
 .default-table tbody tr:nth-of-type(even) {
-  background-color: #bb8585;
-  color: #370d08;
+  background-color: #431a0e;
+  color: #eee;
 }
 
 
 .default-table tbody tr:last-of-type {
-  border-bottom: 2px solid #370d08;
+  border-bottom: 2px solid #431a0e;
 }

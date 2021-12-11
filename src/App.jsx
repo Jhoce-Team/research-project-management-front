@@ -18,7 +18,7 @@ function App() {
   });
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="">
       <ApolloProvider client={client}>
         <BrowserRouter>
           <Routes>
