@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import EditProfile from "./pages/EditProfile";
 import UsersIndex from "./pages/users/UsersIndex";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import EditUser from "./pages/users/EditUser";
 
 function App() {
   const client = new ApolloClient({
@@ -28,6 +29,7 @@ function App() {
               <Route path="editProfile" element={<EditProfile />}></Route>
               <Route path="home" element={<Home />}></Route>
               <Route path="users" element={<UsersIndex />}></Route>
+              <Route path="users/editUser/:_id" element={<EditUser />}></Route>
               <Route path="projects" element={<Projects />}></Route>
             </Route>
             <Route path="/login" element={<Login />}></Route>

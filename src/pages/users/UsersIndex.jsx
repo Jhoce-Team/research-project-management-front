@@ -3,21 +3,42 @@ import { useQuery } from "@apollo/client";
 import { GET_USERS } from "../../graphql/users/usersQueries";
 import { useEffect, useState } from "react";
 import "../../styles/tableStyles.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const UsersIndex = () => {
   const { data, error, loading } = useQuery(GET_USERS);
   const [search, setSearch] = useState("");
   const [filteredUsers, setFilteredUsers] = useState();
 
-  useEffect(async () => {
+  useEffect(() => {
     if (data) {
-      await setFilteredUsers(
+      setFilteredUsers(
         data.findAllUsers.filter((e) => {
           return JSON.stringify(e).toLowerCase().includes(search.toLowerCase());
         })
       );
     }
   }, [search, data]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error("Error consultando la BD 😟", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }, [error]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <main className="w-full h-auto">
@@ -98,6 +119,7 @@ const UsersIndex = () => {
                   <th>Pais</th>
                   <th>Rol</th>
                   <th>Estado</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -112,6 +134,11 @@ const UsersIndex = () => {
                         <td>{u.country}</td>
                         <td>{u.rol}</td>
                         <td>{u.status}</td>
+                        <td>
+                          <Link to={`/users/editUser/${u._id}`}>
+                            <i className="fas fa-list"></i>
+                          </Link>
+                        </td>
                       </tr>
                     );
                   })}
@@ -120,6 +147,7 @@ const UsersIndex = () => {
           </div>
         </section>
       </div>
+      <ToastContainer />
     </main>
   );
 };
