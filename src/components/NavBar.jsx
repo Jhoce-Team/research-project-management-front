@@ -19,9 +19,6 @@ const NavBar = () => {
           </button>
         </div>
         <div className="flex justify-around w-1/2">
-          <Link to="/home">
-            <span className="font-bold text-xl md:text-2xl hover:text-gray-300">Home</span>
-          </Link>
           <Link to="/projects" className="hidden md:flex">
             <span className="font-bold text-xl md:text-2xl hover:text-gray-300">Projects</span>
           </Link>
@@ -48,12 +45,12 @@ const NavBar = () => {
 
 const Options = () => {
   return (
-    <div className="w-full md:hidden">
+    <div className="w-full md:hidden bg-color1 text-gray-100">
       <ul className="flex flex-col justify-center items-center w-full">
-        <li className="border-b-2 border-gray-400 w-full flex justify-center items-center hover:bg-gray-100">
+        <li className="border-t-2 border-gray-400 w-full flex justify-center items-center hover:bg-color2 font-bold text-xl">
           <Link to="/projects">Projects</Link>
         </li>
-        <li className="border-b-2 border-gray-400 w-full flex justify-center items-center hover:bg-gray-100">
+        <li className="border-t-2 border-gray-400 w-full flex justify-center items-center hover:bg-color2 font-bold text-xl">
           <Link to="/users">Users</Link>
         </li>
       </ul>
