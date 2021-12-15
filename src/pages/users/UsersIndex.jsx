@@ -23,7 +23,6 @@ const UsersIndex = () => {
     }
   }, [search, data]);
 
-
   // FILTRO PARA EL ROL DE LIDER
   // useEffect(() => {
   //   if (data) {
@@ -86,32 +85,38 @@ const UsersIndex = () => {
                     key={u._id}
                     className="border-2 border-color1 rounded-sm px-2 py-3 mb-2 shadow"
                   >
-                    <div>
-                      <b>Nombre:</b>
-                      {u.userName}
+                    <div className="flex justify-between">
+                      <span>
+                        <b>Nombre: </b>
+                        {u.userName}
+                      </span>
+
+                      <Link to={`/users/editUser/${u._id}`}>
+                        <i className="fas fa-list"></i>
+                      </Link>
                     </div>
                     <div>
-                      <b>Apellido:</b>
+                      <b>Apellido: </b>
                       {u.userLastName}
                     </div>
                     <div>
-                      <b>Identificacion:</b>
+                      <b>Identificacion: </b>
                       {u.identification}
                     </div>
                     <div>
-                      <b>Correo:</b>
+                      <b>Correo: </b>
                       {u.email}
                     </div>
                     <div>
-                      <b>Pais:</b>
+                      <b>Pais: </b>
                       {u.country}
                     </div>
                     <div>
-                      <b>Rol:</b>
+                      <b>Rol: </b>
                       {u.rol}
                     </div>
                     <div>
-                      <b>Estado:</b>
+                      <b>Estado: </b>
                       {u.status}
                     </div>
                   </div>
