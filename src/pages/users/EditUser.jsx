@@ -46,7 +46,7 @@ const EditUser = () => {
 
   const eliminarUsuario = (e) => {
     deleteUser({
-      variables: { _id:_id },
+      variables: { _id: _id },
     });
   };
 
@@ -147,7 +147,7 @@ const EditUser = () => {
             ) : (
               <i className="fas fa-trash"></i>
             )}
-            Eliminar usuario
+            <Link to="/users"> Eliminar usuario</Link>
           </button>
         </div>
       </section>

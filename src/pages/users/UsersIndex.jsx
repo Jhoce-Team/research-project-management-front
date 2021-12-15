@@ -12,6 +12,7 @@ const UsersIndex = () => {
   const [search, setSearch] = useState("");
   const [filteredUsers, setFilteredUsers] = useState();
 
+  // FILTRO PARA EL ADMINISTRADOR
   useEffect(() => {
     if (data) {
       setFilteredUsers(
@@ -21,6 +22,22 @@ const UsersIndex = () => {
       );
     }
   }, [search, data]);
+
+
+  // FILTRO PARA EL ROL DE LIDER
+  // useEffect(() => {
+  //   if (data) {
+  //     setFilteredUsers(
+  //       data.findAllUsers.filter((e) => {
+  //         if (e.rol === "ESTUDIANTE") {
+  //           return JSON.stringify(e)
+  //             .toLowerCase()
+  //             .includes(search.toLowerCase());
+  //         }
+  //       })
+  //     );
+  //   }
+  // }, [search, data]);
 
   useEffect(() => {
     if (error) {
@@ -42,12 +59,12 @@ const UsersIndex = () => {
 
   return (
     <main className="w-full h-auto">
-      <div className="">
-        <section className="w-full flex justify-center items-center">
-          <h2 className="font-bold text-3xl">Usuarios</h2>
-        </section>
-        <section className="flex flex-col justify-center items-center mb-2 w-full px-10 sm:grid sm:gap-5 sm:grid-cols-2">
-          <div className="border-gray-900 h-auto w-full">
+      <div className="py-10">
+        <section className="flex flex-col justify-center items-center px-10 mb-2 w-full">
+          <section className="w-full flex justify-center items-center">
+            <h2 className="font-bold text-3xl">Usuarios</h2>
+          </section>
+          <div className="border-gray-900 h-auto w-full sm:col-span-1">
             <input
               value={search}
               onChange={(e) => {
@@ -57,11 +74,6 @@ const UsersIndex = () => {
               placeholder={"🔎"}
               className="w-full my-2 bg-gray-100 border border-gray-400 rounded-md outline-none focus:border-color1 py-2 px-1"
             />
-          </div>
-          <div className="flex justify-around bg-color1 rounded-md text-gray-100 px-1 py-2 w-full">
-            <div className="">Todos</div>
-            <div className="">Estudiantes</div>
-            <div className="">Lideres</div>
           </div>
         </section>
         <hr />
@@ -109,41 +121,43 @@ const UsersIndex = () => {
         </section>
         <section className="hidden lg:block mt-2">
           <div className="w-screen h-full flex justify-center items-center">
-            <table className="default-table w-3/5 h-auto">
-              <thead>
-                <tr>
-                  <th>Identification</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Correo</th>
-                  <th>Pais</th>
-                  <th>Rol</th>
-                  <th>Estado</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredUsers &&
-                  filteredUsers.map((u) => {
-                    return (
-                      <tr key={u._id}>
-                        <td>{u.identification}</td>
-                        <td>{u.userName}</td>
-                        <td>{u.userLastName}</td>
-                        <td>{u.email}</td>
-                        <td>{u.country}</td>
-                        <td>{u.rol}</td>
-                        <td>{u.status}</td>
-                        <td>
-                          <Link to={`/users/editUser/${u._id}`}>
-                            <i className="fas fa-list"></i>
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
+            <div className="h-96 overflow-auto overflow-x-hidden">
+              <table className="default-table w-3/5 h-96 overflow-auto overflow-x-hidden">
+                <thead>
+                  <tr>
+                    <th>Identification</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Pais</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredUsers &&
+                    filteredUsers.map((u) => {
+                      return (
+                        <tr key={u._id}>
+                          <td>{u.identification}</td>
+                          <td>{u.userName}</td>
+                          <td>{u.userLastName}</td>
+                          <td>{u.email}</td>
+                          <td>{u.country}</td>
+                          <td>{u.rol}</td>
+                          <td>{u.status}</td>
+                          <td>
+                            <Link to={`/users/editUser/${u._id}`}>
+                              <i className="fas fa-list"></i>
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
       </div>
