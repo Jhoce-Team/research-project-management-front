@@ -6,6 +6,7 @@ import "../../styles/tableStyles.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import Loading from "../../components/Loading";
 
 const UsersIndex = () => {
   const { data, error, loading } = useQuery(GET_USERS);
@@ -53,7 +54,11 @@ const UsersIndex = () => {
   }, [error]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   return (

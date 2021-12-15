@@ -8,7 +8,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <nav className="flex w-screen h-16 justify-around items-center bg-color1 text-gray-200 md:justify-between md:pr-14">
+      <nav className="flex w-full h-16 justify-around items-center bg-color1 text-gray-200 md:justify-between">
         <div className="md:hidden">
           <button
             onClick={() => {
@@ -20,22 +20,24 @@ const NavBar = () => {
         </div>
         <div className="flex justify-around w-1/2">
           <Link to="/projects" className="hidden md:flex">
-            <span className="font-bold text-xl md:text-2xl hover:text-gray-300">Projects</span>
+            <span className="font-bold text-xl md:text-2xl hover:text-gray-300">
+              Projects
+            </span>
           </Link>
           <Link to="/users" className="hidden md:flex">
-            <span className="font-bold text-xl md:text-2xl hover:text-gray-300">Users</span>
+            <span className="font-bold text-xl md:text-2xl hover:text-gray-300">
+              Users
+            </span>
           </Link>
         </div>
-        <div>
-          <div>
-            <Link to="/profile">
-              <img
-                src={profile}
-                alt="Your avatar"
-                className="w-12 h-12 rounded-full md:w-14 md:h-14"
-              />
-            </Link>
-          </div>
+        <div className="mr-10">
+          <Link to="/profile">
+            <img
+              src={profile}
+              alt="Your avatar"
+              className="w-12 h-12 rounded-full md:w-14 md:h-14"
+            />
+          </Link>
         </div>
       </nav>
       {openNavbar ? <Options /> : <></>}
