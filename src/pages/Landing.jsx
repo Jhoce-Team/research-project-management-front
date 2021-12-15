@@ -7,16 +7,16 @@ const Landing = () => {
 
   return (
     <>
-      <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div class="absolute rgb-150-100-50 inset-0 bg-gradient-to-r  bg-gray-100 hover-blue to-sky-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-          <div class="relative px-4 py-10 bg-red shadow-lg sm:rounded-3xl sm:p-20">
-            <div class="max-w-md mx-auto">
-              <div class="flex items-end justify-center text-5x1 font-extrabold size">
+      <div class="min-h-screen  bg-color6 py-6 flex flex-col justify-center sm:py-12">
+        <div class="relative  py-3  sm:max-w-xl sm:mx-auto">
+          <div class="absolute inset-0  to-sky-500 bg-color8 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+          <div class="relative  px-4 py-10  bg-color7 shadow-lg sm:rounded-3xl sm:p-20">
+            <div class="max-w-md mx-auto blue">
+              <div class="flex items-end justify-center text-5x1 font-extrabold size-150">
                 Welcome to Jhoce team´s Proyect
               </div>
               <div class="divide-y divide-gray-200">
-                <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                <div class="py-8 text-base leading-6 space-y-4 font-extraboldtext-gray-700 sm:text-lg sm:leading-7">
                   <p>
                     Un proyecto de MinTic para desarrollo de fin de curso,
                     podemos encontrar:
@@ -27,7 +27,7 @@ const Landing = () => {
                         <svg
                           class="flex-shrink-0 h-5 w-5 text-cyan-500"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
+                          fill="green"
                         >
                           <path
                             fill-rule="evenodd"
@@ -43,7 +43,7 @@ const Landing = () => {
                         <svg
                           class="flex-shrink-0 h-5 w-5 text-cyan-500"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
+                          fill="green"
                         >
                           <path
                             fill-rule="evenodd"
@@ -59,7 +59,7 @@ const Landing = () => {
                         <svg
                           class="flex-shrink-0 h-5 w-5 text-cyan-500"
                           viewBox="0 0 20 20"
-                          fill="currentColor"
+                          fill="green"
                         >
                           <path
                             fill-rule="evenodd"
@@ -72,8 +72,7 @@ const Landing = () => {
                     </li>
                   </ul>
                   <p>
-                    No tengo idea de qué colocar aquí pero estaría bien colocar
-                    un objetivo xd
+                    Desarrolado por: Jofay Segura - Ana Pulido - Heidy Avila -Jhon David -Juan Gomez - Omar Cardenas
                   </p>
                 </div>
                 <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
@@ -83,7 +82,7 @@ const Landing = () => {
                       class="flex justify-center font-bold hover:text-red-700"
                     >
                       {" "}
-                      ►►►►ENTRAR►►►►
+                      ►►►►ENTRAR◄◄◄◄
                     </Link>
                   </p>
                 </div>
