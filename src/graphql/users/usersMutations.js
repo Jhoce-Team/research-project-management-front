@@ -44,4 +44,19 @@ const DELETE_USER = gql`
   }
 `;
 
-export { EDIT_USER, DELETE_USER };
+const EDIT_PROFILE = gql`
+  mutation editProfile($_id: String!, $fields: profileFields!) {
+    editProfile(_id: $_id, fields: $fields) {
+      _id
+      userName
+      userLastName
+      identification
+      email
+      country
+      userDescription
+      photo
+    }
+  }
+`;
+
+export { EDIT_USER, DELETE_USER, EDIT_PROFILE };

@@ -17,7 +17,7 @@ const GET_USERS = gql`
 `;
 
 const GET_USER = gql`
-  query findOneUser ($_id: String!) {
+  query findOneUser($_id: String!) {
     findOneUser(_id: $_id) {
       _id
       userName

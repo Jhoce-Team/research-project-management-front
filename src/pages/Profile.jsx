@@ -2,15 +2,50 @@ import React from "react";
 import InformationField from "../components/ProfileComponents/InformationField";
 import SectionFact from "../components/ProfileComponents/SectionFact";
 import imageProfile from "../images/profilePicture.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EditInformation from "../components/ProfileComponents/EditInformation";
+import { GET_USER } from "../graphql/users/usersQueries";
+import Loading from "../components/Loading";
+import { useUser } from "../context/userContext";
+import { toast } from "react-toastify";
+import { useQuery } from "@apollo/client";
 
 const Profile = () => {
-  const user = "admin";
-  const [editProfile, setEditProfile] = useState(false);
+  const [isEditProfile, setIsEditProfile] = useState(false);
+  const { userData, setUserData } = useUser();
+  const {
+    data: profileData,
+    loading: profileLoading,
+    error: profileError,
+  } = useQuery(GET_USER, {
+    variables: { _id: userData._id },
+  });
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    console.log(
+      "Falta la edicion del perfil y una vez integrado el registro y login, cambiar el contexto de usuario"
+    );
+  };
+
+  useEffect(() => {
+    toast.error("Error consultando tus datos 😢", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }, [profileError]);
+
+  if (profileLoading) {
+    return <Loading />;
+  }
 
   const facts = () => {
-    if (user === "leader") {
+    if (profileData.findOneUser.rol.toLowerCase() === "lider") {
       return (
         <div className="flex-col bg-gray-200 rounded-md">
           <div className="flex justify-around">
@@ -22,7 +57,7 @@ const Profile = () => {
           </div>
         </div>
       );
-    } else if (user === "student") {
+    } else if (profileData.findOneUser.rol.toLowerCase() === "estudiante") {
       return (
         <div className="flex-col bg-gray-200 rounded-md">
           <div className="flex justify-around">
@@ -31,7 +66,7 @@ const Profile = () => {
           </div>
         </div>
       );
-    } else if (user === "admin") {
+    } else if (profileData.findOneUser.rol.toLowerCase() === "administrador") {
       return (
         <div className="flex-col bg-gray-200 rounded-md">
           <div className="flex w-full justify-around">
@@ -57,90 +92,110 @@ const Profile = () => {
               alt="Your avatar"
               className="w-32 h-32 rounded-full"
             />
-            <button
-              className="flex justify-center items-center w-full text-color4 hover:underline hover:text-color3"
+            <span
+              className="flex justify-center items-center w-full text-color4 hover:underline hover:text-color3 cursor-pointer"
               onClick={() => {
-                setEditProfile(true);
+                setIsEditProfile(true);
               }}
             >
               Editar Perfil
-            </button>
+            </span>
           </div>
           <div className="flex-col justify-start items-center md:justify-center w-3/5">
             <h3 className="text-3xl font-bold text-color1 flex items-center justify-center">
-              Jofay-zs
+              {profileData.findOneUser.userName}
             </h3>
             <h4 className="text-2xl text-color2 flex items-center justify-center">
-              Student
+              {profileData.findOneUser.rol}
             </h4>
           </div>
         </section>
         <section className="mb-5 flex justify-center items-center md:border-l-2 md:mx-5 md:px-5">
-          {editProfile ? (
+          {isEditProfile ? (
             <textarea
-              name=""
-              id=""
               cols="90"
               rows="4"
-              maxlength="180"
-              placeholder="Escribe tu nueva descripcion"
-            ></textarea>
+              maxLength="180"
+              defaultValue={profileData.findOneUser.userDescription}
+            />
           ) : (
             <p className="text-center">
-              ea nostrum dolorum, nam exercitationem enim facilis. Amet numquam
-              ut quasi dignissimos temporibus voluptate sdadasdsa sdada asdas
-              ghjkf
+              {profileData.findOneUser.userDescription}
             </p>
           )}
         </section>
       </div>
       <section className="mb-5">{facts()}</section>
-      {editProfile ? (
+      {isEditProfile ? (
         <section className="my-2 mx-2">
-          <h4 className="text-xl font-bold text-color1 mb-3">Tu informacion</h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2">
-            <EditInformation title={"Nombres"} information={"Jofay"} />
-            <EditInformation title={"Apellidos"} information={"Zhan Segura "} />
-            <EditInformation title={"Pais"} information={"Colombia"} />
-            <EditInformation
-              title={"Email"}
-              information={"jofay99@gmail.com"}
-            />
-            <EditInformation title={"Rol"} information={"Student"} />
-            <EditInformation
-              title={"Identificacion"}
-              information={"12344571245"}
-            />
-          </div>
-          <div className="w-full flex justify-end pt-2 pr-5">
-            <button
-              onClick={() => {
-                setEditProfile(false);
-              }}
-              className="bg-color5 rounded-md px-2 py-1 text-xl font-bold hover:bg-color4"
-            >
-              Guardar cambios
-            </button>
-          </div>
+          <form onSubmit={submitForm}>
+            <h4 className="text-xl font-bold text-color1 mb-3">
+              Tu informacion
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+              <EditInformation
+                title={"Nombres"}
+                information={profileData.findOneUser.userName}
+              />
+              <EditInformation
+                title={"Apellidos"}
+                information={profileData.findOneUser.userLastName}
+              />
+              <EditInformation
+                title={"Pais"}
+                information={profileData.findOneUser.country}
+              />
+              <EditInformation
+                title={"Email"}
+                information={profileData.findOneUser.email}
+              />
+              <EditInformation
+                title={"Identificacion"}
+                information={profileData.findOneUser.identification}
+              />
+            </div>
+            <div className="w-full flex flex-col justify-between items-center pt-2 sm:flex-row sm:px-5">
+              <button
+                onClick={() => {
+                  setIsEditProfile(false);
+                }}
+                type="button"
+                className="px-3 py-2 bg-gray-800 text-gray-100 rounded-sm font-bold text-xl mt-2 w-full hover:bg-gray-700 sm:w-56"
+              >
+                <i className="fas fa-arrow-left"></i> Regresar
+              </button>
+              <button
+                type="submit"
+                className="px-3 py-2 bg-green-800 text-gray-100 rounded-sm font-bold text-xl mt-2 w-full hover:bg-green-700 sm:w-56"
+              >
+                Guardar cambios
+              </button>
+            </div>
+          </form>
         </section>
       ) : (
         <section className="my-2 mx-2">
           <h4 className="text-xl font-bold text-color1 mb-3">Tu informacion</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2">
-            <InformationField title={"Nombres"} information={"Jofay"} />
+            <InformationField
+              title={"Nombres"}
+              information={profileData.findOneUser.userName}
+            />
             <InformationField
               title={"Apellidos"}
-              information={"Zhan Segura "}
+              information={profileData.findOneUser.userLastName}
             />
-            <InformationField title={"Pais"} information={"Colombia"} />
+            <InformationField
+              title={"Pais"}
+              information={profileData.findOneUser.country}
+            />
             <InformationField
               title={"Email"}
-              information={"jofay99@gmail.com"}
+              information={profileData.findOneUser.email}
             />
-            <InformationField title={"Rol"} information={"Student"} />
             <InformationField
               title={"Identificacion"}
-              information={"12344571245"}
+              information={profileData.findOneUser.identification}
             />
           </div>
         </section>
