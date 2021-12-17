@@ -18,7 +18,10 @@ const REGISTER = gql`
       rol: $rol
       password: $password
       country: $country
-    )
+    ) {
+      token
+      error
+    }
   }
 `;
 export { REGISTER };
