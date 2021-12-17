@@ -1,12 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import "../../src/styles/loginStyles.css";
 
-const Ingress = () => {
+const Logged = () => {
   return (
-    <div className="w-screen h-screen bg-color6">
+    <div className="w-screen h-screen loggedLayout">
       <Outlet />
     </div>
   );
 };
 
-export default Ingress;
+export default Logged;

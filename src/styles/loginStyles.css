@@ -1,48 +1,45 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-weight: 300;
-}
-body {
-  font-family: "Source Sans Pro", sans-serif;
-  color: white;
-  font-weight: 300;
-}
-body ::-webkit-input-placeholder {
-  /* WebKit browsers */
-  font-family: "Source Sans Pro", sans-serif;
-  color: white;
-  font-weight: 300;
-}
-body :-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-  font-family: "Source Sans Pro", sans-serif;
-  color: white;
-  opacity: 1;
-  font-weight: 300;
-}
-body ::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-  font-family: "Source Sans Pro", sans-serif;
-  color: white;
-  opacity: 1;
-  font-weight: 300;
-}
-body :-ms-input-placeholder {
-  /* Internet Explorer 10+ */
-  font-family: "Source Sans Pro", sans-serif;
-  color: white;
-  font-weight: 300;
-}
-.wrapper {
+.loggedLayout{
   background: #50a3a2;
   background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
   background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
   background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
   background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+}
+
+.loginBody {
+  font-family: "Source Sans Pro", sans-serif;
+  color: white;
+  font-weight: 300;
+}
+.loginBody ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-family: "Source Sans Pro", sans-serif;
+  color: rgba(94, 94, 94, 0.329);
+  font-weight: 1000;
+}
+.loginBody :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-family: "Source Sans Pro", sans-serif;
+  color: black;
+  opacity: 1;
+  font-weight: 300;
+}
+.loginBody ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-family: "Source Sans Pro", sans-serif;
+  color: black;
+  opacity: 1;
+  font-weight: 300;
+}
+.loginBody :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-family: "Source Sans Pro", sans-serif;
+  color: black;
+  font-weight: 300;
+}
+.wrapper {
   position: absolute;
   top: 50%;
   left: 0;
@@ -65,14 +62,14 @@ body :-ms-input-placeholder {
   font-size: 40px;
   transition-duration: 1s;
   transition-timing-function: ease-in-put;
-  font-weight: 200;
+  font-weight: bold;
 }
-form {
+.loginBody form {
   padding: 20px 0;
   position: relative;
   z-index: 2;
 }
-form input {
+.loginBody form input {
   display: block;
   appearance: none;
   outline: 0;
@@ -85,19 +82,19 @@ form input {
   display: block;
   text-align: center;
   font-size: 18px;
-  color: white;
+  color: black;
   transition-duration: 0.25s;
   font-weight: 300;
 }
-form input:hover {
+.loginBody form input:hover {
   background-color: fade(white, 40%);
 }
-form input:focus {
+.loginBody form input:focus {
   background-color: white;
   width: 300px;
   color: #53e3a6;
 }
-form button {
+.loginBody form button {
   appearance: none;
   outline: 0;
   background-color: white;
@@ -109,7 +106,8 @@ form button {
   cursor: pointer;
   font-size: 18px;
   transition-duration: 0.25s;
+  font-weight: bold;
 }
-form button:hover {
+.loginBody form button:hover {
   background-color: #f5f7f9;
 }

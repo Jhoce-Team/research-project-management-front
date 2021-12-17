@@ -6,12 +6,12 @@ const Login = () => {
     e.preventDefault();
   };
   return (
-    <div className="wrapper">
+    <div className="wrapper loginBody">
       <div className="container">
         <h1>Bienvenid@</h1>
         <form className="form" onSubmit={submitForm}>
-          <input type="text" placeholder="Usuario" required={true}/>
-          <input type="password" placeholder="Contraseña" required={true}/>
+          <input type="text" placeholder="Usuario" required={true} />
+          <input type="password" placeholder="Contraseña" required={true} />
           <button type="submit" id="login-button">
             Ingresar
           </button>

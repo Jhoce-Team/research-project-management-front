@@ -11,7 +11,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import EditUser from "./pages/users/EditUser";
 import { UserContext } from "./context/userContext";
 import { useEffect, useState } from "react";
-import Ingress from "./layouts/Logged";
+import Logged from "./layouts/Logged";
 
 function App() {
   const client = new ApolloClient({
@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="">
       <ApolloProvider client={client}>
-        <UserContext value={{ userData, setUserData }}>
+        <UserContext.Provider value={{ userData, setUserData }}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Landing />}></Route>
@@ -44,13 +44,13 @@ function App() {
                 ></Route>
                 <Route path="projects" element={<Projects />}></Route>
               </Route>
-              <Route path="/ingress" element={<Ingress />}>
-                <Route path="registration" element={<Registration />} />
-                <Route path="login" element={<Login />} />
+              <Route path="/ingress" element={<Logged />}>
+                <Route path="login" element={<Login />}></Route>
+                <Route path="registration" element={<Registration />}></Route>
               </Route>
             </Routes>
           </BrowserRouter>
-        </UserContext>
+        </UserContext.Provider>
       </ApolloProvider>
     </div>
   );
