@@ -11,10 +11,12 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import EditUser from "./pages/users/EditUser";
 import { UserContext } from "./context/userContext";
 import { useEffect, useState } from "react";
+import Ingress from "./layouts/Logged";
 
 function App() {
   const client = new ApolloClient({
     uri: "https://server-gql-jhoceteam.herokuapp.com/graphql",
+    // uri: "http://localhost:4000/graphql",
     cache: new InMemoryCache(),
   });
   const [userData, setUserData] = useState({});
@@ -29,7 +31,7 @@ function App() {
   return (
     <div className="">
       <ApolloProvider client={client}>
-        <UserContext.Provider value={{ userData, setUserData }}>
+        <UserContext value={{ userData, setUserData }}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Landing />}></Route>
@@ -42,11 +44,13 @@ function App() {
                 ></Route>
                 <Route path="projects" element={<Projects />}></Route>
               </Route>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/registration" element={<Registration />}></Route>
+              <Route path="/ingress" element={<Ingress />}>
+                <Route path="registration" element={<Registration />} />
+                <Route path="login" element={<Login />} />
+              </Route>
             </Routes>
           </BrowserRouter>
-        </UserContext.Provider>
+        </UserContext>
       </ApolloProvider>
     </div>
   );
