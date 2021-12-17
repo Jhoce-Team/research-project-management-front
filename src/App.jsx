@@ -22,7 +22,7 @@ function App() {
   // En esta parte una vez se integre el login/registro se deben vincular los datos del usuario logeado
   useEffect(() => {
     setUserData({
-      _id: "61a2c76bf3bdad1b165ee5fc",
+      _id: "61bbcff4ce60883c51ea58b0",
     });
   }, []);
 

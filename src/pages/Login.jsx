@@ -1,7 +1,24 @@
 import React from "react";
+import "../../src/styles/loginStyles.css";
 
 const Login = () => {
-  return <div></div>;
+  const submitForm = (e) => {
+    e.preventDefault();
+  };
+  return (
+    <div className="wrapper">
+      <div className="container">
+        <h1>Bienvenid@</h1>
+        <form className="form" onSubmit={submitForm}>
+          <input type="text" placeholder="Usuario" required={true}/>
+          <input type="password" placeholder="Contraseña" required={true}/>
+          <button type="submit" id="login-button">
+            Ingresar
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
