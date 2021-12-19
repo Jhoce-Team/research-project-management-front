@@ -7,31 +7,36 @@ import Registration from "./pages/Registration";
 import Projects from "./pages/Projects";
 import General from "./layouts/General";
 import UsersIndex from "./pages/users/UsersIndex";
-import {
-  ApolloProvider,
-  ApolloClient,
-  InMemoryCache,
-  createHttpLink,
-} from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import EditUser from "./pages/users/EditUser";
 import { UserContext } from "./context/userContext";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Logged from "./layouts/Logged";
 import { LoggedContext } from "./context/loggedContext";
-import { setContext } from "@apollo/client/link/context";
 import jwt_decode from "jwt-decode";
+import { createHttpLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 // uri: "https://server-gql-jhoceteam.herokuapp.com/graphql",
 // uri: "http://localhost:4000/graphql",
 
-const token = localStorage.getItem("token");
+const httpLink = createHttpLink({
+  uri: "http://localhost:4000/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
 
 const client = new ApolloClient({
-  uri: "https://server-gql-jhoceteam.herokuapp.com/graphql",
   cache: new InMemoryCache(),
-  headers: {
-    authorization: token ? `Bearer ${token}` : "",
-  },
+  link: authLink.concat(httpLink),
 });
 
 function App() {
@@ -42,8 +47,25 @@ function App() {
     setIngressToken(token);
     if (token) {
       localStorage.setItem("token", JSON.stringify(token));
+    } else {
+      localStorage.removeItem("token");
     }
   };
+
+  useEffect(() => {
+    if (ingressToken) {
+      const decoded = jwt_decode(ingressToken);
+      setUserData({
+        _id: decoded._id,
+        nombre: decoded.nombre,
+        apellido: decoded.apellido,
+        identificacion: decoded.identificacion,
+        correo: decoded.correo,
+        rol: decoded.rol,
+        foto: decoded.foto,
+      });
+    }
+  }, [ingressToken]);
 
   return (
     <ApolloProvider client={client}>

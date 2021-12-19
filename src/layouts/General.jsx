@@ -5,12 +5,12 @@ import { useLoggedContext } from "../context/loggedContext";
 import { useMutation } from "@apollo/client";
 import { VALIDATE_TOKEN } from "../graphql/ingress/ingressMutations";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Loading from "../components/Loading";
 
 const General = () => {
-  const { ingressToken, setToken, setIngressToken } = useLoggedContext();
-
+  const navigate = useNavigate();
+  const { setToken } = useLoggedContext();
   const [
     validateToken,
     {
@@ -23,6 +23,21 @@ const General = () => {
   useEffect(() => {
     validateToken();
   }, [validateToken]);
+
+  useEffect(() => {
+    if (validateTokenData) {
+      if (validateTokenData.validateToken.token) {
+        setToken(validateTokenData.validateToken.token);
+      } else {
+        setToken(null);
+        navigate("/ingress/login");
+      }
+    }
+  }, [validateTokenData, setToken, navigate]);
+
+  if (validateTokenLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>
