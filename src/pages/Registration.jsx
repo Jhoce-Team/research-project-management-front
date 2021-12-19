@@ -1,15 +1,12 @@
 import React from "react";
-import GeneralInput from "../components/GeneralInput";
 import useFormData from "../hooks/useFormData";
-import { FormControl } from "@mui/material";
-import { InputLabel } from "@mui/material";
-import { NativeSelect } from "@mui/material";
 import { useMutation } from "@apollo/client";
 import { REGISTER } from "../graphql/ingress/ingressMutations";
 import { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useLoggedContext } from "../context/loggedContext";
+import "../styles/registrationStyles.css";
 
 const Registration = () => {
   const { form, formData, updateFormData } = useFormData(null);
@@ -65,80 +62,70 @@ const Registration = () => {
   }, [registerUserError]);
 
   return (
-    <main className="w-full h-full flex justify-center items-center">
-      <div className="h-4/5 w-96 bg-red-300 px-5 py-2">
-        <h3>Bienvenido</h3>
-        <div>Llena los siguientes campos para quedar registrado</div>
+    <div className="wrapper registrationBody">
+      <div className="container">
+        <h1>Bienvenid@</h1>
         <form
-          ref={form}
+          className="form"
           onSubmit={submitForm}
           onChange={updateFormData}
-          className="w-2/3"
+          ref={form}
         >
-          <div>
-            <GeneralInput
-              label={"Nombre"}
-              name={"userName"}
-              type={"text"}
-              required={true}
-            />
-            <GeneralInput
-              label={"Apellido"}
-              name={"userLastName"}
-              type={"text"}
-              required={true}
-            />
-            <GeneralInput
-              label={"Identificacion"}
-              name={"identification"}
-              type={"text"}
-              required={true}
-            />
-            <GeneralInput
-              label={"Correo"}
-              name={"email"}
-              type={"email"}
-              required={true}
-            />
-            <GeneralInput
-              label={"Pais"}
-              name={"country"}
-              type={"text"}
-              required={false}
-            />
-            <GeneralInput
-              label={"Contraseña"}
-              name={"password"}
-              type={"password"}
-              required={true}
-            />
-            <FormControl variant="standard" sx={{ m: 1, width: "100%" }}>
-              <InputLabel variant="standard" htmlFor="rol">
-                Rol
-              </InputLabel>
-              <NativeSelect name="rol">
-                <option value="ESTUDIANTE">Estudiante</option>
-                <option value="LIDER">Lider</option>
-                <option value="ADMINISTRADOR">Administrador</option>
-              </NativeSelect>
-            </FormControl>
-          </div>
-          <button
-            type="submit"
-            // disabled={Object.keys(formData).length === 0}
-            className="px-3 py-2 bg-green-800 text-gray-100 rounded-sm font-bold text-xl mt-2 w-56 disabled:opacity-30 disabled:cursor-default hover:bg-green-700"
-          >
-            {registerUserLoading ? (
-              <i className="fas fa-spinner"></i>
-            ) : (
-              <i className="fas fa-save"></i>
-            )}{" "}
-            Guardar cambios
+          <input
+            type="text"
+            placeholder="Nombre"
+            name={"userName"}
+            required={true}
+          />
+
+          <input
+            type="text"
+            placeholder="Apellido"
+            name={"userLastName"}
+            required={true}
+          />
+
+          <input
+            type="text"
+            placeholder="Identificacion"
+            name={"identification"}
+            required={true}
+          />
+
+          <input
+            type="password"
+            placeholder="Contraseña"
+            name={"password"}
+            required={true}
+          />
+
+          <input
+            type="email"
+            placeholder="Correo"
+            name={"email"}
+            required={true}
+          />
+
+          <input
+            type="text"
+            placeholder="Pais"
+            name={"country"}
+            required={true}
+          />
+
+          <select name="rol">
+            <option value="ESTUDIANTE">Estudiante</option>
+            <option value="LIDER">Lider</option>
+            <option value="ADMINISTRADOR">Administrador</option>
+          </select>
+
+          <button type="submit" id="login-button">
+            Registrarse
           </button>
         </form>
       </div>
       <ToastContainer />
-    </main>
+    </div>
   );
 };
 

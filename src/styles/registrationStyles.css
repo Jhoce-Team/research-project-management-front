@@ -1,0 +1,96 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+
+.registrationBody {
+  font-family: "Source Sans Pro", sans-serif;
+  color: black;
+  font-weight: 300;
+  height: 100%;
+}
+.registrationBody ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-family: "Source Sans Pro", sans-serif;
+  color: black;
+  font-weight: 300;
+}
+.registrationBody :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-family: "Source Sans Pro", sans-serif;
+  color: black;
+  opacity: 1;
+  font-weight: 300;
+}
+.registrationBody ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-family: "Source Sans Pro", sans-serif;
+  color: black;
+  opacity: 1;
+  font-weight: 300;
+}
+.registrationBody :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-family: "Source Sans Pro", sans-serif;
+  color: black;
+  font-weight: 300;
+}
+
+.wrapper.form-success .container h1 {
+  transform: translateY(85px);
+}
+.registrationBody .container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 80px 0;
+  height: 100%;
+  text-align: center;
+}
+.registrationBody .container h1 {
+  font-size: 40px;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-put;
+  font-weight: 200;
+}
+.registrationBody form {
+  padding: 20px 0;
+  height: 100%;
+}
+.registrationBody form input {
+  display: block;
+  appearance: none;
+  outline: 0;
+  border: 1px solid fade(white, 40%);
+  background-color: fade(white, 20%);
+  width: 250px;
+  border-radius: 3px;
+  padding: 10px 15px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: black;
+  transition-duration: 0.25s;
+  font-weight: 300;
+}
+.registrationBody form input:hover {
+  background-color: fade(white, 40%);
+}
+.registrationBody form input:focus {
+  background-color: white;
+  width: 300px;
+  color: #53e3a6;
+}
+.registrationBody form button {
+  appearance: none;
+  outline: 0;
+  background-color: white;
+  border: 0;
+  padding: 10px 15px;
+  color: #53e3a6;
+  border-radius: 3px;
+  width: 250px;
+  cursor: pointer;
+  font-size: 18px;
+  transition-duration: 0.25s;
+}
+.registrationBody form button:hover {
+  background-color: #f5f7f9;
+}
