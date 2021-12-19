@@ -7,30 +7,49 @@ import Registration from "./pages/Registration";
 import Projects from "./pages/Projects";
 import General from "./layouts/General";
 import UsersIndex from "./pages/users/UsersIndex";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+} from "@apollo/client";
 import EditUser from "./pages/users/EditUser";
 import { UserContext } from "./context/userContext";
 import { useEffect, useState } from "react";
 import Logged from "./layouts/Logged";
+import { LoggedContext } from "./context/loggedContext";
+import { setContext } from "@apollo/client/link/context";
+import jwt_decode from "jwt-decode";
+
+// uri: "https://server-gql-jhoceteam.herokuapp.com/graphql",
+// uri: "http://localhost:4000/graphql",
+
+const token = localStorage.getItem("token");
+
+const client = new ApolloClient({
+  uri: "https://server-gql-jhoceteam.herokuapp.com/graphql",
+  cache: new InMemoryCache(),
+  headers: {
+    authorization: token ? `Bearer ${token}` : "",
+  },
+});
 
 function App() {
-  const client = new ApolloClient({
-    uri: "https://server-gql-jhoceteam.herokuapp.com/graphql",
-    // uri: "http://localhost:4000/graphql",
-    cache: new InMemoryCache(),
-  });
   const [userData, setUserData] = useState({});
+  const [ingressToken, setIngressToken] = useState("");
 
-  // En esta parte una vez se integre el login/registro se deben vincular los datos del usuario logeado
-  useEffect(() => {
-    setUserData({
-      _id: "61bcaeeb2a0a1c5b8910b752",
-    });
-  }, []);
+  const setToken = (token) => {
+    setIngressToken(token);
+    if (token) {
+      localStorage.setItem("token", JSON.stringify(token));
+    }
+  };
 
   return (
-    <div className="">
-      <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <LoggedContext.Provider
+        value={{ ingressToken, setToken, setIngressToken }}
+      >
         <UserContext.Provider value={{ userData, setUserData }}>
           <BrowserRouter>
             <Routes>
@@ -51,8 +70,8 @@ function App() {
             </Routes>
           </BrowserRouter>
         </UserContext.Provider>
-      </ApolloProvider>
-    </div>
+      </LoggedContext.Provider>
+    </ApolloProvider>
   );
 }
 

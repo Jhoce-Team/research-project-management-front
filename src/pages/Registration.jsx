@@ -9,10 +9,12 @@ import { REGISTER } from "../graphql/ingress/ingressMutations";
 import { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useLoggedContext } from "../context/loggedContext";
 
 const Registration = () => {
   const { form, formData, updateFormData } = useFormData(null);
   const navigate = useNavigate();
+  const { setToken } = useLoggedContext();
 
   const [
     register,
@@ -42,11 +44,11 @@ const Registration = () => {
         progress: undefined,
       });
       if (registerUserData.register.token) {
-        localStorage.setItem("token", registerUserData.register.token);
+        setToken(registerUserData.register.token);
         navigate("/profile");
       }
     }
-  }, [registerUserData]);
+  }, [registerUserData, navigate, setToken]);
 
   useEffect(() => {
     if (registerUserError) {

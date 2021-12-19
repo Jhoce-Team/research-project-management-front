@@ -1,14 +1,35 @@
-import React from 'react'
-import { Outlet } from 'react-router'
-import NavBar from '../components/NavBar'
+import React from "react";
+import { Outlet } from "react-router";
+import NavBar from "../components/NavBar";
+import { useLoggedContext } from "../context/loggedContext";
+import { useMutation } from "@apollo/client";
+import { VALIDATE_TOKEN } from "../graphql/ingress/ingressMutations";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Loading from "../components/Loading";
 
 const General = () => {
-    return (
-      <div>
-        <NavBar />
-        <Outlet />
-      </div>
-    );
-}
+  const { ingressToken, setToken, setIngressToken } = useLoggedContext();
 
-export default General
+  const [
+    validateToken,
+    {
+      data: validateTokenData,
+      loading: validateTokenLoading,
+      error: validateTokenError,
+    },
+  ] = useMutation(VALIDATE_TOKEN);
+
+  useEffect(() => {
+    validateToken();
+  }, [validateToken]);
+
+  return (
+    <div>
+      <NavBar />
+      <Outlet />
+    </div>
+  );
+};
+
+export default General;
