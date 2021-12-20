@@ -40,7 +40,7 @@ const General = () => {
   }
 
   return (
-    <div>
+    <div className="h-screen">
       <NavBar />
       <Outlet />
     </div>

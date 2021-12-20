@@ -4,6 +4,7 @@ import profile from "../images/profilePicture.jpg";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useLoggedContext } from "../context/loggedContext";
+import PrivateComponent from "./PrivateComponent";
 
 const NavBar = () => {
   const [openNavbar, setOpenNavbar] = useState(false);
@@ -14,7 +15,7 @@ const NavBar = () => {
   };
 
   return (
-    <div>
+    <div className="sticky top-0">
       <nav className="flex w-full h-16 justify-around items-center bg-color1 text-gray-200 md:justify-between">
         <div className="md:hidden">
           <button
@@ -30,7 +31,7 @@ const NavBar = () => {
             <img
               src={profile}
               alt="Your avatar"
-              className="w-12 h-12 rounded-full md:w-14 md:h-14 mr-2"
+              className="w-12 h-12 rounded-full md:w-14 md:h-14 mr-5"
             />
             <span className="font-bold text-xl md:text-2xl hover:text-gray-300">
               Profile
@@ -41,11 +42,13 @@ const NavBar = () => {
               Projects
             </span>
           </Link>
-          <Link to="/users" className="hidden md:flex">
-            <span className="font-bold text-xl md:text-2xl hover:text-gray-300">
-              Users
-            </span>
-          </Link>
+          <PrivateComponent roleList={["ADMINISTRADOR", "LIDER"]}>
+            <Link to="/users" className="hidden md:flex">
+              <span className="font-bold text-xl md:text-2xl hover:text-gray-300">
+                Users
+              </span>
+            </Link>
+          </PrivateComponent>
         </div>
         <div className="mr-10">
           <NavLink
