@@ -18,6 +18,7 @@ import { setContext } from "@apollo/client/link/context";
 import ProjectsIndex from "./pages/projects/ProjectsIndex";
 import FullProject from "./pages/projects/FullProject";
 import AdvanceIndex from "./pages/advances/AdvanceIndex";
+import NewProject from "./pages/projects/NewProject";
 
 // uri: "https://server-gql-jhoceteam.herokuapp.com/graphql",
 // uri: "http://localhost:4000/graphql",
@@ -59,12 +60,11 @@ function App() {
       const decoded = jwt_decode(ingressToken);
       setUserData({
         _id: decoded._id,
-        nombre: decoded.nombre,
-        apellido: decoded.apellido,
-        identificacion: decoded.identificacion,
-        correo: decoded.correo,
+        userName: decoded.userName,
+        userLastName: decoded.userLastName,
+        identification: decoded.identification,
+        email: decoded.email,
         rol: decoded.rol,
-        foto: decoded.foto,
       });
     }
   }, [ingressToken]);
@@ -79,19 +79,21 @@ function App() {
             <Routes>
               <Route path="/" element={<Landing />}></Route>
               <Route path="/" element={<General />}>
-                <Route path="profile" element={<Profile />}></Route>
-                <Route path="users" element={<UsersIndex />}></Route>
-                <Route
-                  path="users/editUser/:_id"
-                  element={<EditUser />}
-                ></Route>
-                <Route path="projects" element={<ProjectsIndex />}></Route>
+                <Route path="profile" element={<Profile />} />
+                <Route path="users" element={<UsersIndex />} />
+                <Route path="users/editUser/:_id" element={<EditUser />} />
+                <Route path="projects" element={<ProjectsIndex />} />
+                <Route path="projects/newProject" element={<NewProject />} />
                 <Route
                   path="projects/fullProject/:_id"
                   element={<FullProject />}
                 />
                 <Route
                   path="projects/advance/:_id"
+                  element={<AdvanceIndex />}
+                />
+                <Route
+                  path="projects/editProject/:_id"
                   element={<AdvanceIndex />}
                 />
               </Route>
