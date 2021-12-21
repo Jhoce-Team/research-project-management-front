@@ -5,11 +5,12 @@ const GET_PROJECTS = gql`
     findAllProjects {
       _id
       projectName
-      projectDescription
+      projectShortDescription
       startDate
       endDate
       phase
       leader {
+        _id
         userName
       }
     }

@@ -10,7 +10,7 @@ import image from "../images/projectImage.jpg";
 const ProjectCard = ({
   projectKey,
   projectName,
-  projectDescription,
+  projectShortDescription,
   projectLink,
   startDate,
   endDate,
@@ -35,9 +35,9 @@ const ProjectCard = ({
               <Typography gutterBottom variant="h5" component="div">
                 {projectName}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <div variant="body2" color="text.secondary">
                 <div className="w-full grid grid-cols-2 gap-2">
-                  <div className="col-span-2">{projectDescription}</div>
+                  <div className="col-span-2">{projectShortDescription}</div>
                   <div className="">
                     <b>Inicio: </b>
                     {startDate}
@@ -55,7 +55,7 @@ const ProjectCard = ({
                     {leader}
                   </div>
                 </div>
-              </Typography>
+              </div>
             </CardContent>
           </CardActionArea>
         </Card>

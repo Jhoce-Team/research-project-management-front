@@ -34,18 +34,25 @@ const NavBar = () => {
               className="w-12 h-12 rounded-full md:w-14 md:h-14 mr-5"
             />
             <span className="font-bold text-xl md:text-2xl hover:text-gray-300">
-              Profile
+              Perfil
             </span>
           </Link>
           <Link to="/projects" className="hidden md:flex">
             <span className="font-bold text-xl md:text-2xl hover:text-gray-300">
-              Projects
+              Proyectos
             </span>
           </Link>
-          <PrivateComponent roleList={["ADMINISTRADOR", "LIDER"]}>
+          <PrivateComponent roleList={["ADMINISTRADOR"]}>
             <Link to="/users" className="hidden md:flex">
               <span className="font-bold text-xl md:text-2xl hover:text-gray-300">
-                Users
+                Usuarios
+              </span>
+            </Link>
+          </PrivateComponent>
+          <PrivateComponent roleList={["LIDER"]}>
+            <Link to="/users" className="hidden md:flex">
+              <span className="font-bold text-xl md:text-2xl hover:text-gray-300">
+                Estudiantes
               </span>
             </Link>
           </PrivateComponent>

@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/client";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { GET_PROJECT } from "../../graphql/projects/projectsQueries";
-import ProjectCard from "../../components/ProjectCard";
 import Loading from "../../components/Loading";
 import image from "../../images/projectImage.jpg";
 const FullProject = () => {
@@ -20,7 +19,7 @@ const FullProject = () => {
       </div>
     );
   }
-
+  
   return (
     <main className="flex flex-col md:flex-row">
       <aside className="w-full bg-color6 flex flex-col justify-center items-center text-gray-200 md:w-96 md:h-full md:min-h-screen md:justify-start">
@@ -67,7 +66,7 @@ const FullProject = () => {
             </div>
             {getUserData.findOneProject.objectives.map((o) => {
               return (
-                <div className="w-full h-auto border-2 border-solid px-3 py-2 mb-2">
+                <div className="w-full h-auto border-2 border-solid px-3 py-2 mb-2" key={o._id}>
                   ({o.objectiveType}) <br /> {o.objectiveDescription}
                 </div>
               );
@@ -81,7 +80,7 @@ const FullProject = () => {
         </h2>
         {getUserData.findOneProject.advances.map((a) => {
           return (
-            <Link to={`/projects/advance/${a._id}`}>
+            <Link to={`/projects/advance/${a._id}`} key={a._id}>
               <div className="w-full h-auto border-2 border-solid px-3 py-2 mb-2 bg-color7 hover:opacity-90">
                 <div className="font-bold">{a.advanceAuthor.userName}</div>
                 <div className="pl-5">{a.advanceDescription}</div>

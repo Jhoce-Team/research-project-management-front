@@ -1,7 +1,11 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const AdvanceIndex = () => {
-  return <div>This is the advance Index</div>;
+  const { _id } = useParams();
+  return <main>
+    
+  </main>;
 };
 
 export default AdvanceIndex;
