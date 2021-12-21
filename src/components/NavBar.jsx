@@ -15,7 +15,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="sticky top-0">
+    <div className="sticky top-0 z-10">
       <nav className="flex w-full h-16 justify-around items-center bg-color1 text-gray-200 md:justify-between">
         <div className="md:hidden">
           <button

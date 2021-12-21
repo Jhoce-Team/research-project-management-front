@@ -4,7 +4,6 @@ import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
-import Projects from "./pages/Projects";
 import General from "./layouts/General";
 import UsersIndex from "./pages/users/UsersIndex";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
@@ -16,12 +15,15 @@ import { LoggedContext } from "./context/loggedContext";
 import jwt_decode from "jwt-decode";
 import { createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import ProjectsIndex from "./pages/projects/ProjectsIndex";
+import FullProject from "./pages/projects/FullProject";
+import AdvanceIndex from "./pages/advances/AdvanceIndex";
 
 // uri: "https://server-gql-jhoceteam.herokuapp.com/graphql",
 // uri: "http://localhost:4000/graphql",
 
 const httpLink = createHttpLink({
-  uri: "https://server-gql-jhoceteam.herokuapp.com/graphql",
+  uri: "http://localhost:4000/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -83,7 +85,15 @@ function App() {
                   path="users/editUser/:_id"
                   element={<EditUser />}
                 ></Route>
-                <Route path="projects" element={<Projects />}></Route>
+                <Route path="projects" element={<ProjectsIndex />}></Route>
+                <Route
+                  path="projects/fullProject/:_id"
+                  element={<FullProject />}
+                />
+                <Route
+                  path="projects/advance/:_id"
+                  element={<AdvanceIndex />}
+                />
               </Route>
               <Route path="/ingress" element={<Logged />}>
                 <Route path="login" element={<Login />}></Route>
