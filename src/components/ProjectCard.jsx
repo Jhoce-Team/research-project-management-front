@@ -23,7 +23,7 @@ const ProjectCard = ({
       className="flex justify-center items-center my-4 mx-2"
     >
       <Link to={projectLink}>
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, maxHeight: 460, minHeight: 460 }}>
           <CardActionArea>
             <CardMedia
               component="img"

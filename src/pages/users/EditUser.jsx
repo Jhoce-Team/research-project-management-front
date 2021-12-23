@@ -153,7 +153,7 @@ const EditUser = () => {
             </button>
           </div>
         </section>
-        <section className="border-2 border-color1 w-4/5 py-3 px-5">
+        <section className="border-2 border-color6 w-4/5 py-3 px-5">
           <form
             className="grid grid-cols-1 md:grid-cols-2 md:gap-5"
             onSubmit={submitForm}

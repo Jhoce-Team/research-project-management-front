@@ -117,7 +117,7 @@ const UsersIndex = () => {
             </div>
           </section>
           <section className="hidden lg:block mt-2">
-            <div className="w-screen h-full flex justify-center items-center">
+            <div className="w-full h-full flex justify-center items-center">
               <div className="h-96 overflow-auto overflow-x-hidden">
                 <table className="default-table w-3/5 h-96 overflow-auto overflow-x-hidden">
                   <thead>
