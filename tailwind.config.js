@@ -19,6 +19,8 @@ module.exports = {
       color6: "#171717",
       color7: "#06b6d4",
       color8: "#67e8f9",
+      color9: "#292929",
+      primary: "#00c3ff",
     },
   },
   variants: {

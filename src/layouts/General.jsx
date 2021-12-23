@@ -40,7 +40,7 @@ const General = () => {
   }
 
   return (
-    <div className="h-full min-h-screen">
+    <div className="h-full min-h-screen flex flex-col sm:flex-row w-full min-w-screen max-w-screen">
       <NavBar />
       <Outlet />
     </div>
