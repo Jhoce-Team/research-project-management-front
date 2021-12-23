@@ -7,6 +7,7 @@ import { VALIDATE_TOKEN } from "../graphql/ingress/ingressMutations";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Loading from "../components/Loading";
+import LogOut from "../components/LogOut";
 
 const General = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const General = () => {
 
   return (
     <div className="h-full min-h-screen flex flex-col sm:flex-row w-full min-w-screen max-w-screen">
+      <LogOut/>
       <NavBar />
       <Outlet />
     </div>
